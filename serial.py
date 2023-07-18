@@ -20,13 +20,13 @@ class SerialGenerator:
 
     def __init__(self, start):
         """Defines   serialGenerator   properties. sets initial
-        value to 100 and flag indicating whether the generate function
-        has run .(initially False)
-
+        value to whatever is passed and flag indicating
+        whether the generate function has run .(initially False)
         """
         self.start = start
-        self.num=start
-        self.has_run = False
+        # naming convention
+        self.generated_num = None
+        # self.has_run = False
 
     def generate(self):
         """ Function that increments the serialGenerator value by 1 if it
@@ -34,14 +34,21 @@ class SerialGenerator:
         previously.
 
         """
-        if self.has_run:
-            self.num += 1
-        self.has_run = True
-        return self.num
+        if not self.generated_num:
+            self.generated_num = self.start
+            return self.start
+        else:
+            self.generated_num += 1
+            return self.generated_num
+
+        # if self.has_run:
+        #     self.generated_num += 1
+        # self.has_run = True
+        # return self.generated_num
 
     def reset(self):
         """Function to reset the serial generator back
-        to its default value (100)"""
+        to its default value"""
 
-        self.num = self.start
-        self.has_run = False
+        self.generated_num = None
+        # self.has_run = False
